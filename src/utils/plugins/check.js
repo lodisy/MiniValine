@@ -1,11 +1,13 @@
 const check = {
-  mail (m) {
+  mail(m) {
     return {
-      k: /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(m),
-      v: m
+      k: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        m
+      ),
+      v: m,
     }
   },
-  link (l) {
+  link(l) {
     if (l.length > 0) {
       l = /^(http|https)/.test(l) ? l : `http://${l}`
     }
@@ -13,11 +15,11 @@ const check = {
       k:
         l.length > 0
           ? /(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/.test(
-            l
-          )
+              l
+            )
           : true,
-      v: l
+      v: l,
     }
-  }
+  },
 }
 module.exports = check
